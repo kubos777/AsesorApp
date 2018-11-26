@@ -12,7 +12,11 @@ let archivo = "asesorApp"
 
 struct Usuario: Codable {
     var nombre: String
+    var usuario: String
     var contrasena: String
+    var apPaterno: String
+    var apMaterno: String
+    var correo: String
     
     static func loadFromServer() -> [Usuario]?{
         let documentsDirectory =
@@ -30,7 +34,7 @@ struct Usuario: Codable {
         return nil
     }
     
-    static func saveToServer(publicaciones: [Usuario]) {
+    static func saveToServer(publicacion: Usuario) {
         let documentsDirectory =
             FileManager.default.urls(for: .documentDirectory,
                                      in: .userDomainMask).first!
@@ -38,7 +42,7 @@ struct Usuario: Codable {
             documentsDirectory.appendingPathComponent(archivo).appendingPathExtension("plist")
         
         let propertyListEncoder = PropertyListEncoder()
-        let encodedNotes = try? propertyListEncoder.encode(publicaciones)
+        let encodedNotes = try? propertyListEncoder.encode(publicacion)
         
         try? encodedNotes?.write(to: archiveURL,
                                  options: .noFileProtection)

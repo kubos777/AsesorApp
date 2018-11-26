@@ -20,7 +20,7 @@ class startSessionViewController: UIViewController {
         }
         
         guard let match = usuario.first(where: {
-            $0.nombre == user
+            $0.usuario == user
         })else {
           return false
         }
