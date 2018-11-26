@@ -8,16 +8,12 @@
 
 import Foundation
 
-class Publicacion{
+
+
+struct Publicacion{
     var tema: String
     var fecha: Date
     var precio: Double
     var usuario: String
-    
-    init(tema: String, fecha: Date, precio: Double, usuario: String) {
-        self.tema = tema
-        self.fecha = fecha
-        self.precio = precio
-        self.usuario = usuario
-    }
+    var descripcion: String
 }

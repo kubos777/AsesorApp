@@ -13,13 +13,16 @@ class PublicacionTableViewController: UITableViewController {
     var publicaciones = [Publicacion]()
 
     static func loadSampleToDos() -> [Publicacion] {
-        let publicacion1 = Publicacion(tema: "Mate", fecha: Date(), precio: 2.11, usuario: "joquin")
-        let publicacion2 = Publicacion(tema: "compu", fecha: Date(), precio: 222.4, usuario: "mjaas")
-        let publicacion3 = Publicacion(tema: "sociales", fecha: Date(), precio: 1.21, usuario: "qwdrqwe")
+        let publicacion1 = Publicacion(tema: "Mate", fecha: Date(), precio: 2.11, usuario: "joquin", descripcion: "muy buena")
+        let publicacion2 = Publicacion(tema: "compu", fecha: Date(), precio: 222.4, usuario: "mjaas", descripcion: "mala")
+        let publicacion3 = Publicacion(tema: "sociales", fecha: Date(), precio: 1.21, usuario: "qwdrqwe", descripcion: "bien")
         
         return [publicacion1, publicacion2, publicacion3]
     }
     
+    @IBAction func unwindToPublicacionTable(unwindSegue: UIStoryboardSegue) {
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,16 +57,40 @@ class PublicacionTableViewController: UITableViewController {
         // Configure the cell...
         let publicacion = publicaciones[indexPath.row]
         cell.temaOutlet?.text = publicacion.tema
-        
         cell.fechaOutlet?.text = dateformatter.string(from: publicacion.fecha)
         cell.precioOutlet?.text = String(publicacion.precio)
-        cell.usuarioOutlet?.text = publicacion.usuario0
+        cell.usuarioOutlet?.text = publicacion.usuario
         
 
         return cell
     }
  
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let publicacion = publicaciones[indexPath.row]
+        
+        performSegue(withIdentifier: "cellDetailSegue", sender: publicacion)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender:
+        Any?) {
+        let publicacion = sender as! Publicacion
+        let cellDetailController = segue.destination as!
+        cellDetailViewController
+        cellDetailController.tema = publicacion.tema
+        cellDetailController.precio = String(publicacion.precio)
+        cellDetailController.descripcion = publicacion.descripcion
+        
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "yyyy-MM-dd"
+        
+        cellDetailController.fecha = dateformatter.string(from: publicacion.fecha)
+        cellDetailController.usuario = publicacion.usuario
+        
+    
+    }
+    
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
