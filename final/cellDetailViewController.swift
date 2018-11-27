@@ -20,7 +20,12 @@ class cellDetailViewController: UIViewController {
     @IBOutlet weak var descripcionOutlet: UILabel!
     
     @IBAction func aceptarAction(_ sender: UIButton) {
+        var user: Usuario = Usuario.getUserToken()!
+        
+        performSegue(withIdentifier: "unwindSegue", sender: nil)
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         temaOutlet.text = tema

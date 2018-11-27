@@ -10,15 +10,9 @@ import UIKit
 
 class PublicacionTableViewController: UITableViewController {
     
-    var publicaciones = [Publicacion]()
+    var publicaciones: [Publicacion] = []
 
-    static func loadSampleToDos() -> [Publicacion] {
-        let publicacion1 = Publicacion(tema: "Mate", fecha: Date(), precio: 2.11, usuario: "joquin", descripcion: "muy buena")
-        let publicacion2 = Publicacion(tema: "compu", fecha: Date(), precio: 222.4, usuario: "mjaas", descripcion: "mala")
-        let publicacion3 = Publicacion(tema: "sociales", fecha: Date(), precio: 1.21, usuario: "qwdrqwe", descripcion: "bien")
-        
-        return [publicacion1, publicacion2, publicacion3]
-    }
+    
     
     @IBAction func unwindToPublicacionTable(unwindSegue: UIStoryboardSegue) {
 
@@ -27,7 +21,11 @@ class PublicacionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        publicaciones = PublicacionTableViewController.loadSampleToDos()
+        guard let publicacionesServer = Publicacion.loadFromServer() else {
+            publicaciones = [Publicacion]()
+            return
+        }
+        publicaciones = publicacionesServer
     }
 
     // MARK: - Table view data source
@@ -59,7 +57,7 @@ class PublicacionTableViewController: UITableViewController {
         cell.temaOutlet?.text = publicacion.tema
         cell.fechaOutlet?.text = dateformatter.string(from: publicacion.fecha)
         cell.precioOutlet?.text = String(publicacion.precio)
-        cell.usuarioOutlet?.text = publicacion.usuario
+        cell.usuarioOutlet?.text = publicacion.usuario.nombre
         
 
         return cell
@@ -84,7 +82,7 @@ class PublicacionTableViewController: UITableViewController {
         dateformatter.dateFormat = "yyyy-MM-dd"
         
         cellDetailController.fecha = dateformatter.string(from: publicacion.fecha)
-        cellDetailController.usuario = publicacion.usuario
+        cellDetailController.usuario = publicacion.usuario.nombre
         
     
     }

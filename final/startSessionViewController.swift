@@ -10,34 +10,38 @@ import UIKit
 
 class startSessionViewController: UIViewController {
 
+    @IBOutlet weak var errorOutlet: UILabel!
     @IBOutlet weak var usuarioOutlet: UITextField!
     @IBOutlet weak var contrasenaOutlet: UITextField!
     
+    let errorString: String = "Usuario o contraseña erróneo"
     
-    func searchUser(user: String, contrasena: String) -> Bool{
-        guard let usuario = Usuario.loadFromServer() else {
-            return false
-        }
-        
-        guard let match = usuario.first(where: {
-            $0.usuario == user
-        })else {
-          return false
-        }
-        
-        guard match.contrasena == contrasena else {
-            return false
-        }
-        
-        return true
+    @IBAction func unwindToStartSessionView(unwindSegue: UIStoryboardSegue) {
         
     }
     
     @IBAction func ingresarAction(_ sender: UIButton) {
         guard let usuario = usuarioOutlet.text else {return}
         guard let contrasena = contrasenaOutlet.text else {return}
-        if searchUser(user: usuario, contrasena: contrasena){
-            performSegue(withIdentifier: "ingresarSegue", sender: nil)
+        if let savedUser = Usuario.searchUserAndPassword(user: usuario, contrasena: contrasena){
+            Usuario.setUserToken(token: savedUser)
+            performSegue(withIdentifier: "ingresarSegue", sender: savedUser)
+        }
+        else{
+            errorOutlet.text = errorString
+            errorOutlet.isHidden = false
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender:
+        Any?) {
+        if segue.identifier == "ingresarSegue"{
+            let usuario = sender as! Usuario
+            let nav = segue.destination as! UINavigationController
+            let menuController = nav.topViewController as! MenuViewController
+            
+            menuController.greeting = "¡Hola " + usuario.nombre
         }
         
     }
