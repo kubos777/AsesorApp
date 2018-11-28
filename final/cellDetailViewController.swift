@@ -10,9 +10,7 @@ import UIKit
 
 class cellDetailViewController: UIViewController {
     
-    var tema: String!, precio: String!
-    var usuario: String!, fecha: String!
-    var descripcion: String!
+    var publicacion: Publicacion!
     @IBOutlet weak var temaOutlet: UILabel!
     @IBOutlet weak var precioOutlet: UILabel!
     @IBOutlet weak var usuarioOutlet: UILabel!
@@ -20,7 +18,19 @@ class cellDetailViewController: UIViewController {
     @IBOutlet weak var descripcionOutlet: UILabel!
     
     @IBAction func aceptarAction(_ sender: UIButton) {
-        var user: Usuario = Usuario.getUserToken()!
+        guard let user: Usuario = Usuario.getUserToken() else {
+            return
+        }
+        publicacion.asesor = user
+        
+        guard let user2: Usuario = Usuario.getUserToken() else {
+            return
+        }
+        user2.asesoriasDadas.append(publicacion)
+        Usuario.setUserToken(token: user2)
+        Usuario.updateServer(user: user2)
+        
+        publicacion.updateServer()
         
         performSegue(withIdentifier: "unwindSegue", sender: nil)
     }
@@ -28,12 +38,14 @@ class cellDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        temaOutlet.text = tema
-        precioOutlet.text = precio
-        usuarioOutlet.text = usuario
-        fechaOutlet.text = fecha
-        descripcionOutlet.text = descripcion
-        // Do any additional setup after loading the view.
+        temaOutlet.text = publicacion.tema
+        precioOutlet.text = String(publicacion.precio)
+        usuarioOutlet.text = publicacion.usuario.usuario
+        descripcionOutlet.text = publicacion.descripcion
+        
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "yyyy-MM-dd"
+        fechaOutlet.text = dateformatter.string(from: publicacion.fecha)
     }
     
 

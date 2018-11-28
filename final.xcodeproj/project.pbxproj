@@ -11,6 +11,7 @@
 		127811D921ABA64A0042A38C /* startSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127811D821ABA64A0042A38C /* startSessionViewController.swift */; };
 		127811DB21ABB2A70042A38C /* Usuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127811DA21ABB2A70042A38C /* Usuario.swift */; };
 		127811DD21ABCA6C0042A38C /* registroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127811DC21ABCA6C0042A38C /* registroViewController.swift */; };
+		12D3738221AE332C00E2481B /* CitasTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D3738121AE332C00E2481B /* CitasTableViewController.swift */; };
 		5B7AF59821ADB70C00BD3367 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7AF59721ADB70C00BD3367 /* MenuViewController.swift */; };
 		5B7AF59A21ADCD7500BD3367 /* CrearPublicacionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7AF59921ADCD7500BD3367 /* CrearPublicacionViewController.swift */; };
 		AA0BC64521A86C100009E65D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0BC64421A86C100009E65D /* AppDelegate.swift */; };
@@ -28,6 +29,7 @@
 		127811D821ABA64A0042A38C /* startSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = startSessionViewController.swift; sourceTree = "<group>"; };
 		127811DA21ABB2A70042A38C /* Usuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usuario.swift; sourceTree = "<group>"; };
 		127811DC21ABCA6C0042A38C /* registroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registroViewController.swift; sourceTree = "<group>"; };
+		12D3738121AE332C00E2481B /* CitasTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitasTableViewController.swift; sourceTree = "<group>"; };
 		5B7AF59721ADB70C00BD3367 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5B7AF59921ADCD7500BD3367 /* CrearPublicacionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrearPublicacionViewController.swift; sourceTree = "<group>"; };
 		AA0BC64121A86C100009E65D /* final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = final.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +89,7 @@
 				127811DC21ABCA6C0042A38C /* registroViewController.swift */,
 				5B7AF59721ADB70C00BD3367 /* MenuViewController.swift */,
 				5B7AF59921ADCD7500BD3367 /* CrearPublicacionViewController.swift */,
+				12D3738121AE332C00E2481B /* CitasTableViewController.swift */,
 			);
 			path = final;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12D3738221AE332C00E2481B /* CitasTableViewController.swift in Sources */,
 				127811DB21ABB2A70042A38C /* Usuario.swift in Sources */,
 				5B7AF59821ADB70C00BD3367 /* MenuViewController.swift in Sources */,
 				AA0BC64721A86C100009E65D /* ViewController.swift in Sources */,

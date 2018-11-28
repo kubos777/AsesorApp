@@ -1,105 +1,120 @@
 //
-//  PublicacionTableViewController.swift
+//  CitasTableViewController.swift
 //  final
 //
-//  Created by kubOS on 11/23/18.
+//  Created by Alonso de Gortari Rabiela on 11/27/18.
 //  Copyright © 2018 julianYjorge. All rights reserved.
 //
 
 import UIKit
 
-class PublicacionTableViewController: UITableViewController {
-    
-    var publicaciones: [Publicacion] = []
+class CitasTableViewController: UITableViewController {
 
-    
-    
-    @IBAction func unwindToPublicacionTable(unwindSegue: UIStoryboardSegue) {
-    }
-    
-    func removeUserPublications(publicaciones: [Publicacion]) -> [Publicacion] {
-        
-        guard let user = Usuario.getUserToken() else {
-            return publicaciones
-        }
-        
-        var publicacionesEdit = publicaciones
-        var idx: Int = 0
-        
-        for _ in publicaciones {
-            if publicacionesEdit[idx].usuario.usuario == user.usuario {
-                publicacionesEdit.remove(at: idx)
-                
-            } else {
-                idx += 1
-            }
-            
-        }
-        return publicacionesEdit
-    }
+    var asesoriasPedidasConCita: [Publicacion] = [Publicacion]()
+    var asesoriasPedidasSinCita: [Publicacion] = [Publicacion]()
+    var asesoriasDadas: [Publicacion] = [Publicacion]()
+    let sectionHeaders: [String] = ["Asesorías a dar", "Asesorías pedidas sin cita", "Asesorías pedidas con cita"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let user = Usuario.getUserToken()!
+        asesoriasPedidasConCita = asesoriasConCita(user: user)
+        asesoriasPedidasSinCita = asesoriasSinCita(user: user)
+        asesoriasDadas = user.asesoriasDadas
+        
+        print(asesoriasPedidasConCita.count)
+        
 
-        guard let publicacionesServer = Publicacion.loadFromServer() else {
-            publicaciones = [Publicacion]()
-            return
-        }
-        publicaciones = removeUserPublications(publicaciones: publicacionesServer)
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
 
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 3
     }
 
+    func asesoriasConCita(user: Usuario) -> [Publicacion] {
+        var conCita = [Publicacion]()
+        
+        for asesoria in user.asesoriasPedidas {
+            if asesoria.asesor != nil {
+                conCita.append(asesoria)
+            }
+        }
+        
+        return conCita
+    }
+    
+    func asesoriasSinCita(user: Usuario) -> [Publicacion] {
+        var sinCita = [Publicacion]()
+        
+        for asesoria in user.asesoriasPedidas {
+            if asesoria.asesor == nil {
+                sinCita.append(asesoria)
+            }
+        }
+        
+        return sinCita
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return publicaciones.count
+        if section == 0 {
+            return asesoriasDadas.count
+        }
+        else if section == 1 {
+            return asesoriasPedidasSinCita.count
+        }
+        else {
+            return asesoriasPedidasConCita.count
+        }
+        
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell =
             tableView.dequeueReusableCell(withIdentifier:
-                "PublicacionCellIdentifier") as? PublicacionTableViewCell else {
+                "citasCell") as? PublicacionTableViewCell else {
                     fatalError("Could not dequeue a cell")
         }
-
+        
+        
+        
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "yyyy-MM-dd"
         
+        var publicacion: Publicacion
         
         // Configure the cell...
-        let publicacion = publicaciones[indexPath.row]
+        if indexPath.section == 0 {
+            publicacion = asesoriasDadas[indexPath.row]
+        }
+        else if indexPath.section == 1 {
+            publicacion = asesoriasPedidasSinCita[indexPath.row]
+        }
+        else {
+            publicacion = asesoriasPedidasConCita[indexPath.row]
+        }
+        
         cell.temaOutlet?.text = publicacion.tema
         cell.fechaOutlet?.text = dateformatter.string(from: publicacion.fecha)
         cell.precioOutlet?.text = String(publicacion.precio)
-        cell.usuarioOutlet?.text = publicacion.usuario.nombre
+    
         
-
+        
         return cell
     }
- 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let publicacion = publicaciones[indexPath.row]
-        
-        performSegue(withIdentifier: "cellDetailSegue", sender: publicacion)
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionHeaders[section]
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender:
-        Any?) {
-        let publicacion = sender as! Publicacion
-        let cellDetailController = segue.destination as!
-        cellDetailViewController
-        cellDetailController.publicacion = publicacion
-    }
-    
-    
-    
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

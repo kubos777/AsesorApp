@@ -308,6 +308,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="36"/>
                                 <state key="normal" title="Ver citas agendadas"/>
+                                <connections>
+                                    <segue destination="dDV-bZ-0TF" kind="show" id="Ke5-Cg-bUg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.83288131480000005" green="0.83288131480000005" blue="0.83288131480000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -339,13 +342,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tema" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ock-Qf-TSN">
-                                            <rect key="frame" x="16" y="0.0" width="46" height="24"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="20"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fecha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zle-bC-GA6">
                                             <rect key="frame" x="16" y="22" width="50" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -493,7 +489,81 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VYT-M3-7A6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="QK7-ML-ABf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4673.913043478261" y="900"/>
+            <point key="canvasLocation" x="4043" y="885"/>
+        </scene>
+        <!--Citas Table View Controller-->
+        <scene sceneID="iaf-Vq-IgO">
+            <objects>
+                <tableViewController id="dDV-bZ-0TF" customClass="CitasTableViewController" customModule="final" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="JDW-a0-NVt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="citasCell" id="ydX-SJ-uIt" customClass="PublicacionTableViewCell" customModule="final" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ydX-SJ-uIt" id="Mbd-eB-XPI">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tema" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUG-K1-Akl">
+                                            <rect key="frame" x="56" y="0.0" width="46" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fecha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4C-9N-CWU">
+                                            <rect key="frame" x="56" y="18" width="50" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Precio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOn-c6-S9m">
+                                            <rect key="frame" x="218" y="-1" width="53" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="fechaOutlet" destination="X4C-9N-CWU" id="tEr-sP-Okn"/>
+                                    <outlet property="precioOutlet" destination="QOn-c6-S9m" id="KHd-tv-uzI"/>
+                                    <outlet property="temaOutlet" destination="nUG-K1-Akl" id="bbZ-D1-ucg"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dDV-bZ-0TF" id="1Yb-cp-uC3"/>
+                            <outlet property="delegate" destination="dDV-bZ-0TF" id="Acz-jV-NYX"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="g8i-53-pmm" kind="show" identifier="asesoriaDetailSegue" id="3gE-K5-o5I"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="13a-xF-Nc0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5255" y="885"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="A9D-bV-QhG">
+            <objects>
+                <viewController id="g8i-53-pmm" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cq0-uP-JYs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8JY-hy-CFX"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ba8-Uv-cZD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6272" y="887"/>
         </scene>
         <!--Cell Detail View Controller-->
         <scene sceneID="Ap4-8t-Lk1">
