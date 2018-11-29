@@ -21,6 +21,7 @@ class Publicacion: Codable{
     static var currentId: Int = 1
     static let archivo: String = "asesorAppPublicaciones"
     
+    
     init(tema: String, fecha: Date, precio: Double, usuario: Usuario, descripcion: String){
         self.tema = tema
         self.fecha = fecha
@@ -76,7 +77,6 @@ class Publicacion: Codable{
         try? encodedNotes?.write(to: archiveURL,
                                  options: .noFileProtection)
         
-        
     }
     
     func updateServer() {
@@ -91,7 +91,7 @@ class Publicacion: Codable{
             return
         }
         
-        publicaciones.remove(at: idx)
+        publicaciones[idx] = self
         
         let documentsDirectory =
             FileManager.default.urls(for: .documentDirectory,

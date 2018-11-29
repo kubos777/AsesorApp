@@ -34,7 +34,7 @@ class registroViewController: UIViewController {
             return
         }
         
-        let newUser: Usuario = Usuario(nombre: nombreOutlet.text!, usuario: usuarioOutlet.text!, contrasena: contrasenaOutlet.text!, apPaterno: apPaternoOutlet.text!, apMaterno: apMaternoOutlet.text!, correo: correoOutlet.text!, asesoriasDadas: [Publicacion](), asesoriasPedidas: [Publicacion]())
+        let newUser: Usuario = Usuario(nombre: nombreOutlet.text!, usuario: usuarioOutlet.text!, contrasena: contrasenaOutlet.text!, apPaterno: apPaternoOutlet.text!, apMaterno: apMaternoOutlet.text!, correo: correoOutlet.text!)
         
         Usuario.saveToServer(usuario: newUser)
         

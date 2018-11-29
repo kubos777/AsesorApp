@@ -15,14 +15,19 @@ class CitasTableViewController: UITableViewController {
     var asesoriasDadas: [Publicacion] = [Publicacion]()
     let sectionHeaders: [String] = ["Asesorías a dar", "Asesorías pedidas sin cita", "Asesorías pedidas con cita"]
     
+    var publicaciones: [Publicacion] = [Publicacion]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let user = Usuario.getUserToken()!
+        guard let publicaciones_temp = Publicacion.loadFromServer() else {
+            return
+        }
+        publicaciones = publicaciones_temp
         asesoriasPedidasConCita = asesoriasConCita(user: user)
         asesoriasPedidasSinCita = asesoriasSinCita(user: user)
-        asesoriasDadas = user.asesoriasDadas
+        asesoriasDadas = asesoriasADar(user: user)
         
-        print(asesoriasPedidasConCita.count)
         
 
         // Uncomment the following line to preserve selection between presentations
@@ -41,8 +46,8 @@ class CitasTableViewController: UITableViewController {
     func asesoriasConCita(user: Usuario) -> [Publicacion] {
         var conCita = [Publicacion]()
         
-        for asesoria in user.asesoriasPedidas {
-            if asesoria.asesor != nil {
+        for asesoria in publicaciones {
+            if asesoria.usuario.usuario == user.usuario && asesoria.asesor != nil {
                 conCita.append(asesoria)
             }
         }
@@ -53,13 +58,25 @@ class CitasTableViewController: UITableViewController {
     func asesoriasSinCita(user: Usuario) -> [Publicacion] {
         var sinCita = [Publicacion]()
         
-        for asesoria in user.asesoriasPedidas {
-            if asesoria.asesor == nil {
+        for asesoria in publicaciones {
+            if asesoria.usuario.usuario == user.usuario && asesoria.asesor == nil {
                 sinCita.append(asesoria)
             }
         }
         
         return sinCita
+    }
+    
+    func asesoriasADar(user: Usuario) -> [Publicacion] {
+        var dadas = [Publicacion]()
+        
+        for asesoria in publicaciones {
+            if asesoria.asesor != nil && asesoria.asesor!.usuario == user.usuario {
+                dadas.append(asesoria)
+            }
+        }
+        
+        return dadas
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -114,6 +131,30 @@ class CitasTableViewController: UITableViewController {
         return sectionHeaders[section]
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        var publicacion: Publicacion
+        
+        if indexPath.section == 0 {
+            publicacion = asesoriasDadas[indexPath.row]
+        }
+        else if indexPath.section == 1 {
+            publicacion = asesoriasPedidasSinCita[indexPath.row]
+        }
+        else {
+            publicacion = asesoriasPedidasConCita[indexPath.row]
+        }
+        
+        performSegue(withIdentifier: "asesoriaDetailSegue", sender: publicacion)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender:
+        Any?) {
+        let publicacion = sender as! Publicacion
+        let citaDetailView = segue.destination as!
+        CitaDetailViewController
+        citaDetailView.publicacion = publicacion
+    }
 
     /*
     // Override to support conditional editing of the table view.

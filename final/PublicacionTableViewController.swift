@@ -11,13 +11,18 @@ import UIKit
 class PublicacionTableViewController: UITableViewController {
     
     var publicaciones: [Publicacion] = []
-
+    
+    var fechaPropuesta: Date!
+    var fechaHabilitada: Bool!
+    var temaPropuesto: String!
+    var precioPropuesto: String!
+    var busqueda: Bool! = false
     
     
     @IBAction func unwindToPublicacionTable(unwindSegue: UIStoryboardSegue) {
     }
     
-    func removeUserPublications(publicaciones: [Publicacion]) -> [Publicacion] {
+    func removeUserPublications(publicaciones: [Publicacion], buscar: Bool) -> [Publicacion] {
         
         guard let user = Usuario.getUserToken() else {
             return publicaciones
@@ -30,7 +35,23 @@ class PublicacionTableViewController: UITableViewController {
             if publicacionesEdit[idx].usuario.usuario == user.usuario {
                 publicacionesEdit.remove(at: idx)
                 
-            } else {
+            } else if publicacionesEdit[idx].asesor != nil{
+                publicacionesEdit.remove(at: idx)
+            } else if buscar{
+                if !temaPropuesto.isEmpty && !publicacionesEdit[idx].tema.hasPrefix(temaPropuesto){
+                    publicacionesEdit.remove(at: idx)
+                }
+                else if !precioPropuesto.isEmpty && publicacionesEdit[idx].precio < Double(precioPropuesto)!{
+                    publicacionesEdit.remove(at: idx)
+                }
+                else if fechaHabilitada && publicacionesEdit[idx].fecha < fechaPropuesta {
+                    publicacionesEdit.remove(at: idx)
+                }
+                else {
+                    idx += 1
+                }
+                
+            }else {
                 idx += 1
             }
             
@@ -45,7 +66,7 @@ class PublicacionTableViewController: UITableViewController {
             publicaciones = [Publicacion]()
             return
         }
-        publicaciones = removeUserPublications(publicaciones: publicacionesServer)
+        publicaciones = removeUserPublications(publicaciones: publicacionesServer, buscar: busqueda)
     }
 
     // MARK: - Table view data source

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		123522AF21AF960B0019E9CE /* CitaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123522AE21AF960B0019E9CE /* CitaDetailViewController.swift */; };
+		123522B121AF9CE80019E9CE /* BusquedaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123522B021AF9CE80019E9CE /* BusquedaViewController.swift */; };
 		127811D721AB9A830042A38C /* cellDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127811D621AB9A830042A38C /* cellDetailViewController.swift */; };
 		127811D921ABA64A0042A38C /* startSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127811D821ABA64A0042A38C /* startSessionViewController.swift */; };
 		127811DB21ABB2A70042A38C /* Usuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127811DA21ABB2A70042A38C /* Usuario.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		123522AE21AF960B0019E9CE /* CitaDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitaDetailViewController.swift; sourceTree = "<group>"; };
+		123522B021AF9CE80019E9CE /* BusquedaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusquedaViewController.swift; sourceTree = "<group>"; };
 		127811D621AB9A830042A38C /* cellDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cellDetailViewController.swift; sourceTree = "<group>"; };
 		127811D821ABA64A0042A38C /* startSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = startSessionViewController.swift; sourceTree = "<group>"; };
 		127811DA21ABB2A70042A38C /* Usuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usuario.swift; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 				5B7AF59721ADB70C00BD3367 /* MenuViewController.swift */,
 				5B7AF59921ADCD7500BD3367 /* CrearPublicacionViewController.swift */,
 				12D3738121AE332C00E2481B /* CitasTableViewController.swift */,
+				123522AE21AF960B0019E9CE /* CitaDetailViewController.swift */,
+				123522B021AF9CE80019E9CE /* BusquedaViewController.swift */,
 			);
 			path = final;
 			sourceTree = "<group>";
@@ -165,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				123522AF21AF960B0019E9CE /* CitaDetailViewController.swift in Sources */,
 				12D3738221AE332C00E2481B /* CitasTableViewController.swift in Sources */,
 				127811DB21ABB2A70042A38C /* Usuario.swift in Sources */,
 				5B7AF59821ADB70C00BD3367 /* MenuViewController.swift in Sources */,
@@ -172,6 +179,7 @@
 				127811D721AB9A830042A38C /* cellDetailViewController.swift in Sources */,
 				127811D921ABA64A0042A38C /* startSessionViewController.swift in Sources */,
 				AA0BC64521A86C100009E65D /* AppDelegate.swift in Sources */,
+				123522B121AF9CE80019E9CE /* BusquedaViewController.swift in Sources */,
 				AA0BC65721A8734B0009E65D /* Publicacion.swift in Sources */,
 				AA0BC65921A875BA0009E65D /* PublicacionTableViewController.swift in Sources */,
 				5B7AF59A21ADCD7500BD3367 /* CrearPublicacionViewController.swift in Sources */,

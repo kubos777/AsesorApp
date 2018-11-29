@@ -24,6 +24,7 @@ class MenuViewController: UIViewController {
         greetingOutlet.text = greeting!
         // Do any additional setup after loading the view.
     }
+
     
 
     /*

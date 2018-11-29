@@ -30,15 +30,10 @@ class CrearPublicacionViewController: UIViewController {
         
         let publicacion: Publicacion = Publicacion(tema: tituloOutlet.text!, fecha: fechaOutlet.date, precio: Double(montoOutlet.text!)!, usuario: user, descripcion: descripcionOutlet.text!)
 
-        guard let user2: Usuario = Usuario.getUserToken() else {
-            return
-        }
- 
+       
+        
         Publicacion.saveToServer(publicacion: publicacion)
         
-        user2.asesoriasPedidas.append(publicacion)
-        Usuario.setUserToken(token: user2)
-        Usuario.updateServer(user: user2)
         
         performSegue(withIdentifier: "unwindSegue", sender: nil)
     }

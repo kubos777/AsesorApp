@@ -16,12 +16,10 @@ class Usuario: Codable {
     var apPaterno: String
     var apMaterno: String
     var correo: String
-    var asesoriasDadas: [Publicacion]
-    var asesoriasPedidas: [Publicacion]
     static let archivo: String = "asesorAppUser"
     static let state: String = "userState"
     
-    init(nombre: String, usuario: String, contrasena: String, apPaterno: String, apMaterno: String, correo: String, asesoriasDadas: [Publicacion], asesoriasPedidas: [Publicacion]){
+    init(nombre: String, usuario: String, contrasena: String, apPaterno: String, apMaterno: String, correo: String){
         self.nombre = nombre
         self.contrasena = contrasena
         self.apPaterno = apPaterno
@@ -29,8 +27,7 @@ class Usuario: Codable {
         self.correo = correo
         self.usuario = usuario
         self.contrasena = contrasena
-        self.asesoriasDadas = asesoriasDadas
-        self.asesoriasPedidas = asesoriasPedidas
+     
     }
     
     static func loadFromServer() -> [Usuario]?{
