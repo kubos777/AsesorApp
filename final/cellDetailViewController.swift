@@ -17,6 +17,7 @@ class cellDetailViewController: UIViewController {
     @IBOutlet weak var fechaOutlet: UILabel!
     @IBOutlet weak var descripcionOutlet: UILabel!
     
+    @IBOutlet weak var lugarOutlet: UILabel!
     @IBAction func aceptarAction(_ sender: UIButton) {
         guard let user: Usuario = Usuario.getUserToken() else {
             return
@@ -35,7 +36,7 @@ class cellDetailViewController: UIViewController {
         precioOutlet.text = String(publicacion.precio)
         usuarioOutlet.text = publicacion.usuario.usuario
         descripcionOutlet.text = publicacion.descripcion
-        
+        lugarOutlet.text = publicacion.lugar
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "yyyy-MM-dd"
         fechaOutlet.text = dateformatter.string(from: publicacion.fecha)

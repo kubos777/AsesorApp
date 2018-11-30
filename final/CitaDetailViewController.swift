@@ -18,6 +18,7 @@ class CitaDetailViewController: UIViewController {
     @IBOutlet weak var descripcionOutlet: UILabel!
     @IBOutlet weak var temaOutlet: UILabel!
     
+    @IBOutlet weak var lugarOutlet: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +32,8 @@ class CitaDetailViewController: UIViewController {
         }
         
         descripcionOutlet.text = publicacion.descripcion
+        
+        lugarOutlet.text = publicacion.lugar
         
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "yyyy-MM-dd"

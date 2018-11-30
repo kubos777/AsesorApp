@@ -17,17 +17,19 @@ class Publicacion: Codable{
     var usuario: Usuario
     var descripcion: String
     var id: Int
+    var lugar: String
     var asesor: Usuario?
     static var currentId: Int = 1
     static let archivo: String = "asesorAppPublicaciones"
     
     
-    init(tema: String, fecha: Date, precio: Double, usuario: Usuario, descripcion: String){
+    init(tema: String, fecha: Date, precio: Double, usuario: Usuario, descripcion: String, lugar: String){
         self.tema = tema
         self.fecha = fecha
         self.precio = precio
         self.usuario = usuario
         self.descripcion = descripcion
+        self.lugar = lugar
         self.id = Publicacion.currentId
         Publicacion.currentId += 1
     }

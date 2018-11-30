@@ -41,7 +41,7 @@ class startSessionViewController: UIViewController {
             let nav = segue.destination as! UINavigationController
             let menuController = nav.topViewController as! MenuViewController
             
-            menuController.greeting = "¡Hola " + usuario.nombre
+            menuController.greeting = "¡Hola \(usuario.nombre) !"	
         }
         
     }

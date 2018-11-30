@@ -13,14 +13,15 @@ class CrearPublicacionViewController: UIViewController {
     @IBOutlet weak var tituloOutlet: UITextField!
     @IBOutlet weak var montoOutlet: UITextField!
    
+    @IBOutlet weak var lugarOutlet: UITextField!
     @IBOutlet weak var fechaOutlet: UIDatePicker!
     @IBOutlet weak var descripcionOutlet: UITextField!
     let faltanDatos: String = "Faltan datos"
     
     @IBOutlet weak var faltaOutlet: UILabel!
     @IBAction func crearAction(_ sender: UIButton) {
-        guard !((tituloOutlet.text?.isEmpty ?? true) ||  (montoOutlet.text?.isEmpty ?? true) ||  (descripcionOutlet.text?.isEmpty ?? true))  else{
-            faltaOutlet.text = faltanDatos
+        guard !((tituloOutlet.text?.isEmpty ?? true) ||  (montoOutlet.text?.isEmpty ?? true) ||  (descripcionOutlet.text?.isEmpty ?? true) || (lugarOutlet.text?.isEmpty ?? true))  else{
+             faltaOutlet.text = faltanDatos
             faltaOutlet.isHidden = false
             return}
         
@@ -28,7 +29,7 @@ class CrearPublicacionViewController: UIViewController {
             return
         }
         
-        let publicacion: Publicacion = Publicacion(tema: tituloOutlet.text!, fecha: fechaOutlet.date, precio: Double(montoOutlet.text!)!, usuario: user, descripcion: descripcionOutlet.text!)
+        let publicacion: Publicacion = Publicacion(tema: tituloOutlet.text!, fecha: fechaOutlet.date, precio: Double(montoOutlet.text!)!, usuario: user, descripcion: descripcionOutlet.text!, lugar: lugarOutlet.text!)
 
        
         
